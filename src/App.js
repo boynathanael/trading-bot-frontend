@@ -134,7 +134,8 @@ function App() {
                             </tr>
                         </thead>
                         <tbody>
-                            {orders.length > 0 ? (
+                            {/* Tambahkan pengecekan ini: pastikan orders adalah array dan tidak kosong */}
+                            {Array.isArray(orders) && orders.length > 0 ? (
                                 orders.map((order, index) => (
                                     <tr key={index}>
                                         <td>{new Date(order.timestamp).toLocaleString()}</td>
@@ -146,6 +147,7 @@ function App() {
                                     </tr>
                                 ))
                             ) : (
+                                // Tampilkan pesan ini jika tidak ada order
                                 <tr>
                                     <td colSpan="6">Belum ada order yang dieksekusi.</td>
                                 </tr>
