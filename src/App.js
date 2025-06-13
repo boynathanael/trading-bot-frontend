@@ -6,7 +6,7 @@ import './App.css';
 // =================================================================
 // GANTI DENGAN URL BACKEND ANDA YANG SUDAH DI-DEPLOY DI VERCEL
 // =================================================================
-const API_URL = 'https://trading-bot-backend-two.vercel.app/'; // CONTOH URL, GANTI DENGAN MILIK ANDA
+const API_URL = 'https://trading-bot-backend-two.vercel.app'; // CONTOH URL, GANTI DENGAN MILIK ANDA
 
 function App() {
     // State untuk form input
