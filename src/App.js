@@ -29,22 +29,23 @@ function App() {
 
     // Fungsi untuk mengambil data dari backend
     const fetchData = useCallback(async () => {
-        try {
-            // Ambil konfigurasi aktif
-            const configRes = await axios.get(`${API_URL}/config`);
-            if (configRes.data) {
-                setActiveConfig(configRes.data);
-                setConfig(configRes.data); // Update form dengan config dari server
-                setStatusMessage('Konfigurasi aktif berhasil dimuat.');
-            } else {
-                setActiveConfig(null);
-                setStatusMessage('Belum ada konfigurasi aktif. Silakan simpan.');
-            }
+            try {
+                const configRes = await axios.get(`${API_URL}/config`);
+                
+                // Cek apakah data yang diterima BUKAN null
+                if (configRes.data) {
+                    setActiveConfig(configRes.data);
+                    setConfig(configRes.data);
+                    setStatusMessage('Konfigurasi aktif berhasil dimuat.');
+                } else {
+                    // Jika data adalah null, set config ke null dan beri pesan
+                    setActiveConfig(null);
+                    setStatusMessage('Belum ada konfigurasi aktif. Silakan simpan.');
+                }
 
-            // Ambil riwayat order
-            const ordersRes = await axios.get(`${API_URL}/orders`);
-            setOrders(ordersRes.data);
-        } catch (error) {
+                const ordersRes = await axios.get(`${API_URL}/orders`);
+                setOrders(ordersRes.data);
+            } catch (error) {
             console.error('Gagal mengambil data dari server:', error);
             setStatusMessage(`Error: Gagal terhubung ke backend. Pastikan backend berjalan di ${API_URL}.`);
         }
